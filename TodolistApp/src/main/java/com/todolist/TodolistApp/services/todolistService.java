@@ -13,7 +13,7 @@ public interface todolistService {
 
     ToDoList save(ToDoList ToDoList);
 
-    Optional<ToDoList> update(Long id, ToDoList ToDoList);
+    //Optional<ToDoList> update(Long id, ToDoList ToDoList);
 
     Optional<ToDoList> delete(Long id);
 }

@@ -14,6 +14,7 @@ public class User {
 
     public User() {
         this.roles = new ArrayList<>();
+        this.todoLists = new ArrayList<>();
     }
 
     public Long getId() {

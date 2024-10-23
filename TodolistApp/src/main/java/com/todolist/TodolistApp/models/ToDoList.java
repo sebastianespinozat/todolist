@@ -1,13 +1,21 @@
 package com.todolist.TodolistApp.models;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ToDoList {
 
     private Long id;
     private String title;
     private User owner;
-    private List<String> todoStuff;
+    private List<Task> tasks;
+
+    public ToDoList(String title, User owner, List<Task> tasks) {
+        this.title = title;
+        this.owner = owner;
+        this.tasks = new ArrayList<>();
+    }
 
     public Long getId() {
         return id;
@@ -33,19 +41,20 @@ public class ToDoList {
         this.owner = owner;
     }
 
-    public List<String> getTodoStuff() {
-        return todoStuff;
+    public List<Task> getTasks() {
+        return tasks;
     }
 
-    public void setTodoStuff(List<String> todoStuff) {
-        this.todoStuff = todoStuff;
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
-    public void addStuff(String stuff){
-        todoStuff.add(stuff);
+    public void addTask(Task task){
+        this.tasks.add(task);
     }
 
-    public void removeStuff(int index){
-        todoStuff.remove(index);
+    public void deleteTask(Long taskId){
+        this.tasks.removeIf(t -> Objects.equals(t.getId(), taskId));
     }
+
 }
