@@ -1,8 +1,12 @@
 package com.todolist.TodolistApp.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 @Entity
 @Table(name="task")
 public class Task {
@@ -16,10 +20,10 @@ public class Task {
     @Column(name="is_completed")
     private boolean isCompleted;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="todo_list_id", nullable = false)
-    @JsonIgnore
-    private TodoList todo_list_id;
+    @JsonIgnoreProperties({"tasks"})
+    private TodoList todoList;
 
     public Task() {
     }
@@ -53,12 +57,12 @@ public class Task {
         isCompleted = completed;
     }
 
-    public TodoList getTodo_list_id() {
-        return todo_list_id;
+    public TodoList getTodoListId() {
+        return todoList;
     }
 
     public void setTodo_list_id(TodoList todo_list_id) {
-        this.todo_list_id = todo_list_id;
+        this.todoList = todo_list_id;
     }
 
     @Override
