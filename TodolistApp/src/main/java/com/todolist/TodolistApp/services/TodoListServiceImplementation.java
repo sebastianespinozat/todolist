@@ -53,7 +53,7 @@ public class TodoListServiceImplementation implements TodoListService{
             TodoList newTDL = optionalTodoList.orElseThrow();
             newTDL.setTitle(todoList.getTitle());
             newTDL.getTasks().clear();
-            //newTDL.setTasks(todoList.getTasks());
+
             for (Task task : todoList.getTasks()) {
                 task.setTodo_list_id(newTDL); // Asegúrate de que cada tarea conozca su lista
                 newTDL.getTasks().add(task); // Agregar tarea a la lista

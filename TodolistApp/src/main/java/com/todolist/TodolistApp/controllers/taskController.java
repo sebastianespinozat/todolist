@@ -30,7 +30,7 @@ public class taskController {
     }
 
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<?> postTaskByTodoListId(@PathVariable Long listId, @RequestBody Task task){
         Optional<TodoList> todoListOptional = todoListServiceImplementation.findById(listId);
         if(todoListOptional.isPresent()){

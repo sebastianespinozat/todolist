@@ -22,7 +22,8 @@ public class Task {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="todo_list_id", nullable = false)
-    @JsonIgnoreProperties({"tasks"})
+    //@JsonIgnoreProperties({"tasks"})
+    @JsonIgnore
     private TodoList todoList;
 
     public Task() {
@@ -33,6 +34,7 @@ public class Task {
         this.isCompleted = isCompleted;
     }
 
+//    @JsonIgnore
     public Long getId() {
         return id;
     }
@@ -57,8 +59,11 @@ public class Task {
         isCompleted = completed;
     }
 
-    public TodoList getTodoListId() {
-        return todoList;
+    @JsonIgnore
+    @Transient
+    public Long getTodoListId() {
+        //return todoList;
+        return todoList != null ? todoList.getId() : null;
     }
 
     public void setTodo_list_id(TodoList todo_list_id) {
@@ -68,7 +73,7 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
-                "id=" + id +
+                //"id=" + id +
                 ", description='" + description + '\'' +
                 ", isCompleted=" + isCompleted +
                 '}';
